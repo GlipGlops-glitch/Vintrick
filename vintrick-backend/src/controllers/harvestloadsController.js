@@ -1,15 +1,3 @@
-// File: vintrick-backend/src/routes/harvestloads.js
-const express = require('express');
-const { getAll, create } = require('../controllers/harvestloadsController');
-const { validateCreate } = require('../validators/harvestloadsValidator');
-
-const router = express.Router();
-
-router.get('/', getAll);
-router.post('/', validateCreate, create);
-
-module.exports = router;
-
 // File: vintrick-backend/src/controllers/harvestloadsController.js
 const service = require('../services/harvestloadsService');
 
