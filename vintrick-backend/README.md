@@ -275,3 +275,65 @@ frontend_theme_zip.bat
 - [SettingsScreen.css](https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/SettingsScreen.css)
 - [SettingsScreen.js](https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/SettingsScreen.js)
 - [theme.css](https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/theme.css)
+
+
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/README.md
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/.gitignore
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/.env
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/package.json
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/package-lock.json
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/index.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/index.css
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/App.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/App.css
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/App.test.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/setupTests.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/reportWebVitals.js
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/components/HeaderBar.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/components/HeaderBar.css
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/components/NavBar.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/components/NavBar.module.css
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/components/ProtectedRoute.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/components/AddEditHarvestLoadForm.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/components/HarvestLoadFormBody.js
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/context/AuthContext.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/context/SettingsContext.js
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/HomeScreen.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/HomeScreen.css
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/HarvestLoadsScreen.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/HarvestLoadsScreen.css
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/SettingsScreen.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-frontend/src/screens/SettingsScreen.css
+
+
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/README.md
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/index.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/Dockerfile
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/docker-compose.yml
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/.dockerignore
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/.env
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/models.py
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/dao.py
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/main.py
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/package.json
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/src/app.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/src/db.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/src/routes/auth.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/src/routes/harvestloads.js
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/src/controllers/harvestloads.js
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/prisma/schema.prisma
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/prisma/migrations/20250725180429_init/migration.sql
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/prisma/migrations/20250726000657_init/migration.sql
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/prisma/migrations/20250726223537_add_user_auth/migration.sql
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/prisma/migrations/migration_lock.toml
+
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/Tools/upload_harvest_loads.py
+/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/Tools/harvest%20Loads.xlsx
