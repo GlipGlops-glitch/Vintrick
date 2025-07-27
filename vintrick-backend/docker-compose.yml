@@ -1,27 +1,26 @@
+# vintrick-backend/docker-compose.yml
+version: '3.9'
 services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    env_file:
+      - .env
+
   db:
-    image: postgres:16
+    image: postgres:15
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: vintrick
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-
-  backend:
-    build: .
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/vintrick
-      PORT: 3000
-    ports:
-      - "3000:3000"
-    # DO NOT add volumes here!
-    command: sh -c "uvicorn main:app --host 0.0.0.0 --port 3000 --reload"
-
 
 volumes:
   pgdata:
