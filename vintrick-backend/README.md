@@ -313,7 +313,6 @@ frontend_theme_zip.bat
 
 
 /read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/README.md
-/read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/index.js
 /read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/Dockerfile
 /read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/docker-compose.yml
 /read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/.dockerignore

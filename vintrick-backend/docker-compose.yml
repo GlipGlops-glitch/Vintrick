@@ -20,7 +20,8 @@ services:
     ports:
       - "3000:3000"
     # DO NOT add volumes here!
-    command: node src/app.js
+    command: sh -c "uvicorn main:app --host 0.0.0.0 --port 3000 --reload"
+
 
 volumes:
   pgdata:

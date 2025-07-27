@@ -1,17 +1,16 @@
-# File: vintrick-backend/main.py
+# vintrick-backend/main.py
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List
-
 from dao.harvest_load_dao import HarvestLoadDAO
 from models import HarvestLoad
+import uvicorn
 
 app = FastAPI(title="Vintrick Backend")
 
 dao = HarvestLoadDAO()
 
-# Pydantic model for request validation
 class HarvestLoadInput(BaseModel):
     Vintrace_ST: str
     Block: str
@@ -44,3 +43,6 @@ def create_harvestload(payload: HarvestLoadInput):
         return dao.create_harvest_load(payload.dict())
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=3000, reload=True)

@@ -1,15 +1,13 @@
-FROM node:20-alpine
+# vintrick-backend/Dockerfile
+
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install build tools for bcrypt and node-gyp
-RUN apk add --no-cache python3 make g++
+COPY requirements.txt .
 
-COPY package*.json ./
-RUN npm install
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN npx prisma generate
-
-CMD ["node", "src/app.js"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]
