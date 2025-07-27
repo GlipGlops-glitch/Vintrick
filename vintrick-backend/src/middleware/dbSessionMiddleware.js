@@ -1,9 +1,8 @@
 // vintrick-backend/src/middleware/dbSessionMiddleware.js
 
-// This middleware injects DB session into req.db
-const { createDbSession } = require('../../utils/db'); // hypothetical DB session loader
+import { createDbSession } from '../../utils/db.js';
 
-async function dbSessionMiddleware(req, res, next) {
+export default async function dbSessionMiddleware(req, res, next) {
   try {
     req.db = await createDbSession();
     res.on('finish', () => req.db?.close?.());
@@ -12,5 +11,3 @@ async function dbSessionMiddleware(req, res, next) {
     next(err);
   }
 }
-
-module.exports = dbSessionMiddleware;

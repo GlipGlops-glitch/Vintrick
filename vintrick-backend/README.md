@@ -337,3 +337,7 @@ frontend_theme_zip.bat
 
 /read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/Tools/upload_harvest_loads.py
 /read https://github.com/GlipGlops-glitch/Vintrick/blob/main/vintrick-backend/Tools/harvest%20Loads.xlsx
+
+
+docker-compose build --no-cache
+docker-compose up

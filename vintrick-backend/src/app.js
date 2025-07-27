@@ -1,14 +1,15 @@
 // vintrick-backend/src/app.js
 
-const express = require('express');
+import express from 'express';
+import errorHandler from './middleware/errorHandler.js';
+import dbSessionMiddleware from './middleware/dbSessionMiddleware.js';
+import harvestRoutes from './routes/harvestloads.js';
+
 const app = express();
-const errorHandler = require('./middleware/errorHandler');
-const dbSessionMiddleware = require('./middleware/dbSessionMiddleware');
-const harvestRoutes = require('./routes/harvestloads');
 
 app.use(express.json());
-app.use(dbSessionMiddleware); // inject req.db
+app.use(dbSessionMiddleware);
 app.use('/api/harvestloads', harvestRoutes);
 app.use(errorHandler);
 
-module.exports = app;
+export default app;

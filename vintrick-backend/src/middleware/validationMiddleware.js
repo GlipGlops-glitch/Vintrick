@@ -1,8 +1,8 @@
 // vintrick-backend/src/middleware/validationMiddleware.js
 
-const { validationResult } = require('express-validator');
+import { validationResult } from 'express-validator';
 
-function validateRequest(req, res, next) {
+export default function validateRequest(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next({
@@ -13,5 +13,3 @@ function validateRequest(req, res, next) {
   }
   next();
 }
-
-module.exports = validateRequest;

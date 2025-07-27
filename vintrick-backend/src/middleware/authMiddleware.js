@@ -1,5 +1,6 @@
-// File: vintrick-backend/src/middleware/authMiddleware.js
-function authMiddleware(req, res, next) {
+// vintrick-backend/src/middleware/authMiddleware.js
+
+export default function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ error: 'Unauthorized' });
@@ -15,5 +16,3 @@ function authMiddleware(req, res, next) {
     return res.status(403).json({ error: 'Invalid token' });
   }
 }
-
-module.exports = authMiddleware;

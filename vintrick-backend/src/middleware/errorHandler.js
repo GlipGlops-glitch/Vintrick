@@ -1,6 +1,6 @@
 // vintrick-backend/src/middleware/errorHandler.js
 
-function errorHandler(err, req, res, next) {
+export default function errorHandler(err, req, res, next) {
   console.error(err.stack);
   const status = err.status || 500;
   res.status(status).json({
@@ -10,5 +10,3 @@ function errorHandler(err, req, res, next) {
     }
   });
 }
-
-module.exports = errorHandler;
