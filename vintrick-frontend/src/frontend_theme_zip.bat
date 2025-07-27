@@ -1,30 +1,28 @@
 @echo off
 :: Run this script in vintrick-frontend\src
 
-:: Create folder structure
-mkdir components\NavBar
-mkdir components\Layout
-mkdir components\Button
+:: Create folder structure only if they don't exist
+if not exist components\NavBar mkdir components\NavBar
+if not exist components\Layout mkdir components\Layout
+if not exist components\Button mkdir components\Button
 
-:: Create NavBar.jsx
+:: Helper function to write content only if file doesn't exist
+setlocal EnableDelayedExpansion
+
+:: NavBar.jsx
+if not exist components\NavBar\NavBar.jsx (
 (
   echo import styles from './NavBar.module.css';
-  echo import { Link } from 'react-router-dom';
+  echo import ^{ Link ^} from 'react-router-dom';
   echo.
-  echo export default function NavBar() {
-  echo   return (
-  echo     <nav className={styles.nav}>
-  echo       <Link to="/" className={styles.logo}>Vintrick</Link>
-  echo       <div className={styles.links}>
-  echo         <Link to="/harvestloads">Harvest Loads</Link>
-  echo         <Link to="/settings">Settings</Link>
-  echo       </div>
-  echo     </nav>
-  echo   );
-  echo }
+  echo export default function NavBar() ^{
+  echo   return (^<nav className=^"^${styles.nav}^"^>^<Link to=^"/^" className=^"^${styles.logo}^"^>Vintrick^</Link^>^<div className=^"^${styles.links}^"^>^<Link to=^"/harvestloads^"^>Harvest Loads^</Link^>^<Link to=^"/settings^"^>Settings^</Link^>^</div^>^</nav^>);
+  echo ^}
 ) > components\NavBar\NavBar.jsx
+)
 
-:: Create NavBar.module.css
+:: NavBar.module.css
+if not exist components\NavBar\NavBar.module.css (
 (
   echo .nav {
   echo   display: flex;
@@ -48,25 +46,22 @@ mkdir components\Button
   echo   text-decoration: none;
   echo }
 ) > components\NavBar\NavBar.module.css
+)
 
-:: Create Layout.jsx
+:: Layout.jsx
+if not exist components\Layout\Layout.jsx (
 (
   echo import NavBar from '../NavBar/NavBar';
   echo import './Layout.css';
   echo.
-  echo export default function Layout({ children }) {
-  echo   return (
-  echo     <>
-  echo       <NavBar />
-  echo       <main className="main">
-  echo         {children}
-  echo       </main>
-  echo     </>
-  echo   );
-  echo }
+  echo export default function Layout(^{
+  echo   return (^<^>^<NavBar /^>^<main className=^"main^"^>^{{children}}^</main^>^</^>);
+  echo ^}
 ) > components\Layout\Layout.jsx
+)
 
-:: Create Layout.css
+:: Layout.css
+if not exist components\Layout\Layout.css (
 (
   echo .main {
   echo   padding: 1rem;
@@ -75,27 +70,27 @@ mkdir components\Button
   echo   font-family: Arial, sans-serif;
   echo }
 ) > components\Layout\Layout.css
+)
 
-:: Create Button.jsx
+:: Button.jsx
+if not exist components\Button\Button.jsx (
 (
   echo import styles from './Button.module.css';
   echo.
-  echo export default function Button({ variant = 'primary', size = 'medium', children, ...props }) {
+  echo export default function Button(^{
   echo   const classNames = [
   echo     styles.Button,
-  echo     styles['Button--' + variant],
-  echo     styles['Button--' + size]
+  echo     styles['Button--primary'],
+  echo     styles['Button--medium']
   echo   ].join(' ');
   echo.
-  echo   return (
-  echo     <button className={classNames} {...props}>
-  echo       {children}
-  echo     </button>
-  echo   );
-  echo }
+  echo   return (^<button className=^"^${classNames}^"^>^{children^}^</button^>);
+  echo ^}
 ) > components\Button\Button.jsx
+)
 
-:: Create Button.module.css
+:: Button.module.css
+if not exist components\Button\Button.module.css (
 (
   echo .Button {
   echo   border: none;
@@ -130,6 +125,7 @@ mkdir components\Button
   echo   padding: 0.75rem 1.5rem;
   echo }
 ) > components\Button\Button.module.css
+)
 
-echo NavBar, Layout, and Button components created.
+echo ✅ Components created if they didn't already exist.
 pause
