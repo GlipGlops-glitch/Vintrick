@@ -1,51 +1,46 @@
-# main.py
+# File: vintrick-backend/main.py
 
-import tkinter as tk
-from tkinter import ttk, messagebox
-from dao import HarvestLoadDAO
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import List
+
+from dao.harvest_load_dao import HarvestLoadDAO
 from models import HarvestLoad
 
-
-def refresh_table():
-    records = dao.get_all_harvest_loads()
-    for row in tree.get_children():
-        tree.delete(row)
-    for rec in records:
-        tree.insert(
-            "",
-            "end",
-            values=(
-                rec.get("uid", ""),
-                rec.get("Vintrace_ST", ""),
-                rec.get("Block", ""),
-                rec.get("Tons", ""),
-            ),
-        )
-
-
-def add_sample():
-    new_load = HarvestLoad(Vintrace_ST="Z999", Block="BlockTest", Tons=7.5)
-    dao.add_load(new_load)
-    refresh_table()
-    messagebox.showinfo("Info", "Sample record added.")
-
-
-root = tk.Tk()
-root.title("VinTrick New UI")
+app = FastAPI(title="Vintrick Backend")
 
 dao = HarvestLoadDAO()
 
-columns = ("uid", "Vintrace_ST", "Block", "Tons")
-tree = ttk.Treeview(root, columns=columns, show="headings")
-for col in columns:
-    tree.heading(col, text=col)
-tree.pack(fill="both", expand=True)
+# Pydantic model for request validation
+class HarvestLoadInput(BaseModel):
+    Vintrace_ST: str
+    Block: str
+    Tons: float
+    Press: str
+    Tank: str
+    WO: str
+    Date_Received: str
+    AgCode_ST: str
+    Time_Received: str
+    Wine_Type: str
+    Est_Tons_1: float
+    Est_Tons_2: float
+    Est_Tons_3: float
+    Press_Pick_2: str
+    Linked: str
+    Crush_Pad: str
+    Status: str
 
-btn_refresh = ttk.Button(root, text="Refresh", command=refresh_table)
-btn_refresh.pack(side="left", padx=5, pady=5)
+@app.get("/harvestloads", response_model=List[HarvestLoad])
+def get_all_harvestloads():
+    try:
+        return dao.get_all_harvest_loads()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
-btn_add = ttk.Button(root, text="Add Sample", command=add_sample)
-btn_add.pack(side="left", padx=5, pady=5)
-
-refresh_table()
-root.mainloop()
+@app.post("/harvestloads", response_model=HarvestLoad)
+def create_harvestload(payload: HarvestLoadInput):
+    try:
+        return dao.create_harvest_load(payload.dict())
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
