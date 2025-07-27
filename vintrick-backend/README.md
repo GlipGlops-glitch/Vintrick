@@ -156,3 +156,9 @@ MIT
 
 
 Read the repo: https://github.com/GlipGlops-glitch/Vintrick
+
+
+
+git add .
+git commit -m "Theme setup: global styles, theme variables, NavBar refactor"
+git push
