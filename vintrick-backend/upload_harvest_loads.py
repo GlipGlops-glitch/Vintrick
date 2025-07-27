@@ -1,8 +1,11 @@
+# vintrick-backend/Tools/upload_harvest_loads.py   python upload_harvest_loads.py
+
 import pandas as pd
 import requests
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 import time
+
 
 # Config
 API_URL = "http://localhost:3000/api/harvestloads"  # change if needed
@@ -32,8 +35,9 @@ for idx, row in df.iterrows():
         "Linked": str(row["Linked"]),
         "Crush_Pad": str(row["Crush Pad"]),
         "Status": str(row["Status"]),
-        "last_modified": datetime.utcnow().isoformat(),
+        "last_modified": datetime.now(timezone.utc).isoformat(),
         "synced": False,
+
     }
     # POST to API
     r = requests.post(API_URL, json=data)
