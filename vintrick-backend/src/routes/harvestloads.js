@@ -1,34 +1,64 @@
-// File: vintrick-backend/src/routes/harvestloads.js
-const express = require('express');
-const { getAll, create } = require('../controllers/harvestloadsController');
-const { validateCreate } = require('../validators/harvestloadsValidator');
+// vintrick-backend/src/routes/harvestloads.js
 
+const express = require('express');
+const { body, param } = require('express-validator');
 const router = express.Router();
 
-router.get('/', getAll);
-router.post('/', validateCreate, create);
+const validateRequest = require('../middleware/validationMiddleware');
+const controller = require('../controllers/harvestloads');
 
-module.exports = router;
-
-// File: vintrick-backend/src/controllers/harvestloadsController.js
-const service = require('../services/harvestloadsService');
-
-async function getAll(req, res, next) {
+router.get('/', async (req, res, next) => {
   try {
-    const loads = await service.fetchAll(req.user.id);
+    const loads = await controller.getAllHarvestLoads(req, res);
     res.json(loads);
   } catch (err) {
     next(err);
   }
-}
+});
 
-async function create(req, res, next) {
-  try {
-    const newLoad = await service.create(req.user.id, req.body);
-    res.status(201).json(newLoad);
-  } catch (err) {
-    next(err);
+router.get(
+  '/:id',
+  param('id').isInt().withMessage('ID must be an integer'),
+  validateRequest,
+  async (req, res, next) => {
+    try {
+      const load = await controller.getHarvestLoadById(req, res);
+      res.json(load);
+    } catch (err) {
+      next(err);
+    }
   }
-}
+);
 
-module.exports = { getAll, create };
+router.post(
+  '/',
+  [
+    body('loadDate').isISO8601().withMessage('Valid ISO date required'),
+    body('weight').isFloat({ min: 0 }).withMessage('Weight must be a positive number')
+  ],
+  validateRequest,
+  async (req, res, next) => {
+    try {
+      const load = await controller.createHarvestLoad(req, res);
+      res.status(201).json(load);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+router.delete(
+  '/:id',
+  param('id').isInt().withMessage('ID must be an integer'),
+  validateRequest,
+  async (req, res, next) => {
+    try {
+      await controller.deleteHarvestLoad(req, res);
+      res.status(204).send();
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+module.exports = router;
