@@ -1,4 +1,4 @@
-@import '../styles/theme.css';
+@import "../styles/theme.css";
 
 .datascreen-root {
   min-height: 100vh;
@@ -43,21 +43,24 @@
 .nav-btn-blue {
   background: linear-gradient(90deg, #1976d2 0%, #4fc3f7 100%);
 }
-.nav-btn-blue:hover, .nav-btn-blue:focus {
+.nav-btn-blue:hover,
+.nav-btn-blue:focus {
   background: linear-gradient(90deg, #283593 0%, #1976d2 100%);
 }
 .nav-btn-green {
   background: linear-gradient(90deg, #43a047 0%, #a8e063 100%);
   color: #fff;
 }
-.nav-btn-green:hover, .nav-btn-green:focus {
+.nav-btn-green:hover,
+.nav-btn-green:focus {
   background: linear-gradient(90deg, #2e7d32 0%, #43a047 100%);
 }
 .nav-btn-light {
   background: #f6f7fa;
   color: #413963;
 }
-.nav-btn-light:hover, .nav-btn-light:focus {
+.nav-btn-light:hover,
+.nav-btn-light:focus {
   background: #e9e6fd;
 }
 
@@ -75,8 +78,11 @@
 
 .datascreen-modal-backdrop {
   position: fixed;
-  left: 0; top: 0; right: 0; bottom: 0;
-  background: rgba(30,30,50,0.37);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 30, 50, 0.37);
   z-index: 999;
   display: flex;
   align-items: center;
@@ -89,7 +95,7 @@
   border-radius: 1.2rem;
   min-width: 320px;
   max-width: 98vw;
-  box-shadow: 0 6px 26px rgba(110,90,160,0.16);
+  box-shadow: 0 6px 26px rgba(110, 90, 160, 0.16);
   color: #323064;
   position: relative;
   display: flex;

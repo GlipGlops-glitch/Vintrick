@@ -51,3 +51,108 @@ git commit -m "Initial commit"
 git remote add origin https://github.com/Glip/Vintrick.git
 git branch -M main
 git push -u origin main
+
+
+
+# Vintrick
+
+A full-stack application for vineyard management and harvest tracking.
+
+## 🔧 Tech Stack
+
+* **Frontend:** React, Context API, custom CSS
+* **Backend:** Python (FastAPI or Flask), Node.js (Express)
+* **Database:** Prisma (likely PostgreSQL)
+* **Other:** Docker, Excel upload tools
+
+---
+
+## 📁 Project Structure
+
+```
+Vintrick/
+├── vintrick-frontend/      # React frontend
+└── vintrick-backend/       # Python + Node.js backend with Prisma and APIs
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Node.js (v18+)
+* Python (v3.10+)
+* Docker (optional)
+
+### Clone Repo
+
+```bash
+git clone https://github.com/GlipGlops-glitch/Vintrick.git
+cd Vintrick
+```
+
+### Frontend Setup
+
+```bash
+cd vintrick-frontend
+npm install
+npm start
+```
+
+### Backend Setup
+
+```bash
+cd vintrick-backend
+pip install -r requirements.txt  # or npm install if Node
+python main.py                   # or node src/app.js
+```
+
+> Add `.env` file based on `.env.example` before running.
+
+---
+
+## 📌 Features
+
+* 📊 Harvest Load Entry + Management
+* 🔐 User Authentication
+* 📈 Blend/Details/Reports Screens
+* 🧾 Excel Upload Tool
+
+---
+
+## 📦 Scripts
+
+You can create a combined dev script like:
+
+```bash
+# dev-start.sh
+(cd vintrick-backend && npm start) &
+(cd vintrick-frontend && npm start)
+```
+
+---
+
+## 🧪 Testing
+
+* Backend: `pytest` or `Jest`
+* Frontend: `npm test` (Jest + React Testing Library)
+
+---
+
+## ✅ To-Do
+
+* [ ] Add unit tests for all endpoints/components
+* [ ] Setup CI via GitHub Actions
+* [ ] Add linting + format checks
+* [ ] Improve error handling in backend routes
+
+---
+
+## 📄 License
+
+MIT
+
+
+
+Read the repo: https://github.com/GlipGlops-glitch/Vintrick

@@ -27,7 +27,14 @@ export default function HeaderBar({
         <div style={{ width: 94 }} /> // Spacer for symmetry
       )}
       <h2 className="header-title">{title}</h2>
-      <div style={{ width: 200, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+      <div
+        style={{
+          width: 200,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+        }}
+      >
         {user && (
           <>
             <span style={{ marginRight: 8 }}>{user.name || user.email}</span>
@@ -38,11 +45,7 @@ export default function HeaderBar({
         )}
         {!user && <div style={{ width: 94 }} />}
         {onAdd && (
-          <Button
-            variant="primary"
-            className="header-add-btn"
-            onClick={onAdd}
-          >
+          <Button variant="primary" className="header-add-btn" onClick={onAdd}>
             {addLabel}
           </Button>
         )}

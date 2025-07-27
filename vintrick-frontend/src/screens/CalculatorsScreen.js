@@ -1,6 +1,6 @@
-import './CalculatorsScreen.css';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import "./CalculatorsScreen.css";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CalculatorsScreen() {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ export default function CalculatorsScreen() {
   return (
     <div className="calculators-root">
       <div className="header-bar">
-        <button className="header-back-btn" onClick={() => navigate('/')}>
+        <button className="header-back-btn" onClick={() => navigate("/")}>
           ← Back
         </button>
         <h2 className="header-title">Calculators</h2>

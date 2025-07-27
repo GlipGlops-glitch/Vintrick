@@ -11,6 +11,7 @@ API_URL = os.environ.get("API_URL", "http://localhost:3000")
 API_KEY = os.environ.get("API_KEY", "MY_SECRET_KEY")
 HEADERS = {"x-api-key": API_KEY}
 
+
 def safe_api_call(func):
     def wrapper(*args, **kwargs):
         try:
@@ -19,7 +20,9 @@ def safe_api_call(func):
             logging.error(f"API error: {e}")
             messagebox.showerror("Network Error", f"Failed to reach server: {e}")
             return []
+
     return wrapper
+
 
 class HarvestLoadDAO:
     def __init__(self):
@@ -55,6 +58,7 @@ class HarvestLoadDAO:
 
     def close(self):
         pass
+
 
 class BlendsDAO:
     def __init__(self):

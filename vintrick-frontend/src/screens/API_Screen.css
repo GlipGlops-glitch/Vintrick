@@ -1,4 +1,4 @@
-@import '../styles/theme.css';
+@import "../styles/theme.css";
 
 .api_screen-container {
   min-height: 100vh;
@@ -33,13 +33,14 @@
   color: #444;
 }
 
-.api-select, .api-param-input {
+.api-select,
+.api-param-input {
   font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #dedcef;
   padding: 5px 10px;
   margin-left: 0;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   font-family: inherit;
   min-width: 180px;
 }
@@ -74,7 +75,7 @@
   padding: 16px;
   border-radius: 12px;
   font-family: "JetBrains Mono", "Fira Mono", "Menlo", monospace;
-  box-shadow: 0 2px 12px rgba(80,80,120,0.09);
+  box-shadow: 0 2px 12px rgba(80, 80, 120, 0.09);
   transition: background 0.3s;
 }
 

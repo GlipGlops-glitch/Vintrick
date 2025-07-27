@@ -19,30 +19,41 @@ export default function HarvestLoadFormSettings() {
   const navigate = useNavigate();
 
   function toggleField(key) {
-    setSettings(prev => ({
+    setSettings((prev) => ({
       ...prev,
       harvestLoadForm: {
         ...prev.harvestLoadForm,
         fields: {
           ...prev.harvestLoadForm.fields,
-          [key]: !prev.harvestLoadForm.fields[key]
-        }
-      }
+          [key]: !prev.harvestLoadForm.fields[key],
+        },
+      },
     }));
   }
 
   return (
     <div className="settings-root">
-      <HeaderBar title="Harvest Loads Form Fields" onBack={() => navigate("/settings")} />
-      <div className="card settings-card" style={{ maxWidth: 480, margin: "40px auto", padding: 28 }}>
-        <h4 style={{ marginBottom: 24, fontWeight: 600, fontSize: 20 }}>Visible Fields</h4>
+      <HeaderBar
+        title="Harvest Loads Form Fields"
+        onBack={() => navigate("/settings")}
+      />
+      <div
+        className="card settings-card"
+        style={{ maxWidth: 480, margin: "40px auto", padding: 28 }}
+      >
+        <h4 style={{ marginBottom: 24, fontWeight: 600, fontSize: 20 }}>
+          Visible Fields
+        </h4>
         <ul style={{ listStyle: "none", padding: 0 }}>
-          {ALL_FIELDS.map(field => (
-            <li key={field.key} style={{
-              margin: "18px 0",
-              display: "flex",
-              alignItems: "center"
-            }}>
+          {ALL_FIELDS.map((field) => (
+            <li
+              key={field.key}
+              style={{
+                margin: "18px 0",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <input
                 type="checkbox"
                 checked={settings.harvestLoadForm.fields[field.key]}
@@ -52,14 +63,17 @@ export default function HarvestLoadFormSettings() {
                   width: 20,
                   height: 20,
                   accentColor: "var(--primary, #636fa4)",
-                  marginRight: 12
+                  marginRight: 12,
                 }}
               />
-              <label htmlFor={`field-${field.key}`} style={{
-                fontSize: 17,
-                fontWeight: 500,
-                letterSpacing: 0.2
-              }}>
+              <label
+                htmlFor={`field-${field.key}`}
+                style={{
+                  fontSize: 17,
+                  fontWeight: 500,
+                  letterSpacing: 0.2,
+                }}
+              >
                 {field.label}
               </label>
             </li>

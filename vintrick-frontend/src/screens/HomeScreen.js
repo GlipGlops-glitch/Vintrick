@@ -1,10 +1,16 @@
 // File: src/HomeScreen.js
 
-import './HomeScreen.css';
+import "./HomeScreen.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { GiGrapes, GiBarrel, GiCalculator, GiArchiveRegister, GiDatabase } from "react-icons/gi";
-import vintrickLogo from '../assets/background.png'; // Import your logo
+import {
+  GiGrapes,
+  GiBarrel,
+  GiCalculator,
+  GiArchiveRegister,
+  GiDatabase,
+} from "react-icons/gi";
+import vintrickLogo from "../assets/background.png"; // Import your logo
 
 // Button grid config with icons
 const navButtons = [
@@ -12,7 +18,7 @@ const navButtons = [
   { label: "Blends", route: "/blends", icon: <GiBarrel /> },
   { label: "Calculators", route: "/calculators", icon: <GiCalculator /> },
   { label: "Documents", route: "/documents", icon: <GiArchiveRegister /> },
-  { label: "Data", route: "/data", icon: <GiDatabase /> }
+  { label: "Data", route: "/data", icon: <GiDatabase /> },
 ];
 
 export default function HomeScreen() {
@@ -30,7 +36,7 @@ export default function HomeScreen() {
           />
           <div className="card-bottom-nav-grid">
             <div className="nav-row">
-              {navButtons.slice(0, 3).map(btn => (
+              {navButtons.slice(0, 3).map((btn) => (
                 <RippleButton
                   key={btn.label}
                   onClick={() => navigate(btn.route)}
@@ -40,7 +46,7 @@ export default function HomeScreen() {
               ))}
             </div>
             <div className="nav-row">
-              {navButtons.slice(3, 5).map(btn => (
+              {navButtons.slice(3, 5).map((btn) => (
                 <RippleButton
                   key={btn.label}
                   onClick={() => navigate(btn.route)}
@@ -67,15 +73,19 @@ function RippleButton({ icon, label, onClick }) {
     const rect = btn.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
     circle.style.width = circle.style.height = size + "px";
-    circle.style.left = (e.clientX - rect.left - size / 2) + "px";
-    circle.style.top = (e.clientY - rect.top - size / 2) + "px";
+    circle.style.left = e.clientX - rect.left - size / 2 + "px";
+    circle.style.top = e.clientY - rect.top - size / 2 + "px";
     btn.appendChild(circle);
     setTimeout(() => circle.remove(), 530);
     if (onClick) onClick(e);
   }
 
   return (
-    <button className="nav-btn nav-btn-small ripple-btn" ref={btnRef} onClick={handleClick}>
+    <button
+      className="nav-btn nav-btn-small ripple-btn"
+      ref={btnRef}
+      onClick={handleClick}
+    >
       <span className="btn-icon">{icon}</span>
       <span>{label}</span>
     </button>

@@ -1,4 +1,4 @@
-@import '../styles/theme.css';
+@import "../styles/theme.css";
 
 .harvestloads-root {
   min-height: 100vh;
@@ -17,7 +17,7 @@
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 1.1rem 1rem;
-  border: 1.5px solid rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
   overflow-x: auto;
 }
 
@@ -35,7 +35,7 @@
   border-radius: 10px;
   border: 1px solid #dedcef;
   padding: 7px 12px;
-  background: rgba(255,255,255,0.97);
+  background: rgba(255, 255, 255, 0.97);
   font-family: inherit;
 }
 
@@ -44,7 +44,7 @@
   border-radius: 10px;
   border: 1px solid #dedcef;
   padding: 7px 14px;
-  background: rgba(255,255,255,0.97);
+  background: rgba(255, 255, 255, 0.97);
   font-family: inherit;
 }
 
@@ -80,14 +80,16 @@
   transition: background 0.18s;
 }
 
-.harvestloads-table td, .harvestloads-table th {
+.harvestloads-table td,
+.harvestloads-table th {
   vertical-align: middle;
   padding: 8px 7px;
   border-bottom: 1px solid #e3e1f2;
 }
 
 @media (max-width: 900px) {
-  .harvestloads-card, .header-bar {
+  .harvestloads-card,
+  .header-bar {
     max-width: 99vw;
     padding-left: 0.6rem;
     padding-right: 0.6rem;
@@ -95,7 +97,8 @@
 }
 
 @media (max-width: 600px) {
-  .harvestloads-card, .header-bar {
+  .harvestloads-card,
+  .header-bar {
     padding: 0.5rem 0.2rem;
     border-radius: 1.1rem;
   }

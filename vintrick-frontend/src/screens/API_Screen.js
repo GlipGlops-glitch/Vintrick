@@ -1,6 +1,6 @@
 // API_Screen.js
 
-import './API_Screen.css';
+import "./API_Screen.css";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext"; // <-- import AuthContext
 
@@ -57,19 +57,21 @@ export default function VintraceApiScreen() {
     setLoading(false);
   };
 
-  const paramsUI = (endpointMap[selectedEndpoint]?.parameters || []).map((param) => (
-    <div className="api-param-row" key={param.name}>
-      <label>
-        {param.name}:&nbsp;
-        <input
-          type="text"
-          value={paramValues[param.name] || ""}
-          onChange={e => handleParamChange(param.name, e.target.value)}
-          className="api-param-input"
-        />
-      </label>
-    </div>
-  ));
+  const paramsUI = (endpointMap[selectedEndpoint]?.parameters || []).map(
+    (param) => (
+      <div className="api-param-row" key={param.name}>
+        <label>
+          {param.name}:&nbsp;
+          <input
+            type="text"
+            value={paramValues[param.name] || ""}
+            onChange={(e) => handleParamChange(param.name, e.target.value)}
+            className="api-param-input"
+          />
+        </label>
+      </div>
+    ),
+  );
 
   return (
     <div className="api_screen-container">
@@ -78,16 +80,26 @@ export default function VintraceApiScreen() {
         <div className="api-form-row">
           <label>
             <span className="api-label">Select Endpoint:&nbsp;</span>
-            <select value={selectedEndpoint} onChange={handleEndpointChange} className="api-select">
+            <select
+              value={selectedEndpoint}
+              onChange={handleEndpointChange}
+              className="api-select"
+            >
               {Object.keys(endpointMap).map((ep) => (
-                <option value={ep} key={ep}>{ep}</option>
+                <option value={ep} key={ep}>
+                  {ep}
+                </option>
               ))}
             </select>
           </label>
         </div>
         <div className="api-form-row">
           <strong>Parameters:</strong>
-          {paramsUI.length > 0 ? paramsUI : <div className="api-no-params">(No parameters)</div>}
+          {paramsUI.length > 0 ? (
+            paramsUI
+          ) : (
+            <div className="api-no-params">(No parameters)</div>
+          )}
         </div>
         <div className="button-bar-bg api-action-bar">
           <button

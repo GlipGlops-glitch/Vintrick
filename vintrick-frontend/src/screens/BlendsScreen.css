@@ -1,4 +1,4 @@
-@import '../styles/theme.css';
+@import "../styles/theme.css";
 
 .blendsscreen-root {
   min-height: 100vh;
@@ -32,8 +32,6 @@
   text-align: left;
 }
 
-
-
 .blends-card {
   width: 100%;
   max-width: 900px;
@@ -55,7 +53,7 @@
   padding: 7px 12px;
   min-width: 180px;
   font-family: inherit;
-  background: rgba(255,255,255,0.97);
+  background: rgba(255, 255, 255, 0.97);
 }
 
 .blends-table-scroll {
@@ -89,7 +87,8 @@
   transition: background 0.18s;
 }
 
-.blendsscreen-row td, .blendsscreen-table th {
+.blendsscreen-row td,
+.blendsscreen-table th {
   vertical-align: middle;
   padding: 8px 7px;
   border-bottom: 1px solid #e3e1f2;
@@ -103,7 +102,8 @@
 }
 
 @media (max-width: 900px) {
-  .blends-card, .header-bar {
+  .blends-card,
+  .header-bar {
     max-width: 99vw;
     padding-left: 0.6rem;
     padding-right: 0.6rem;
@@ -111,10 +111,15 @@
 }
 
 @media (max-width: 600px) {
-  .blends-card, .header-bar {
+  .blends-card,
+  .header-bar {
     padding: 0.7rem 0.2rem;
     border-radius: 1.1rem;
   }
-  .blendsscreen-root { padding-top: 15px; }
-  .blendsscreen-table { font-size: 0.95rem; }
+  .blendsscreen-root {
+    padding-top: 15px;
+  }
+  .blendsscreen-table {
+    font-size: 0.95rem;
+  }
 }

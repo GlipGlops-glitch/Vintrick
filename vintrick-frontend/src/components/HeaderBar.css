@@ -21,7 +21,6 @@
   text-align: center;
 }
 
-
 .header-back-btn {
   font-weight: 600;
   border-radius: var(--btn-radius);
@@ -33,11 +32,13 @@
   font-size: 1rem;
   cursor: pointer;
   text-align: center;
-  
+
   transition: background 0.14s;
 }
 
-.header-back-btn:hover { background: var(--btn-gradient-hover); }
+.header-back-btn:hover {
+  background: var(--btn-gradient-hover);
+}
 
 .header-add-btn {
   font-weight: 600;
@@ -61,4 +62,3 @@
   display: flex;
   align-items: center;
   Remove position: absolute, right, top, transform, z-index */
-

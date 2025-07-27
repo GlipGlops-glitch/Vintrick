@@ -1,4 +1,4 @@
-import './BlendDetailScreen.css';
+import "./BlendDetailScreen.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderBar from "../components/HeaderBar"; // If using the reusable header
@@ -8,10 +8,7 @@ function BlendDetailScreen() {
 
   return (
     <div className="blenddetailscreen-root">
-      <HeaderBar
-        title="Blend Details"
-        onBack={() => navigate("/blends")}
-      />
+      <HeaderBar title="Blend Details" onBack={() => navigate("/blends")} />
 
       <div className="card blenddetails-card">
         <span className="blenddetails-coming">

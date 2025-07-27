@@ -1,5 +1,5 @@
 // src/screens/HarvestLoadsScreen.js
-import './HarvestLoadsScreen.css';
+import "./HarvestLoadsScreen.css";
 import React, { useState, useEffect } from "react";
 import HeaderBar from "../components/HeaderBar";
 import AddEditHarvestLoadForm from "../components/AddEditHarvestLoadForm";
@@ -7,16 +7,21 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // Import useAuth
 
 // All available crush pads (adjust as needed)
-const CRUSH_PADS = ["All", "White Crush Pad", "Red Crush Pad", "Reserve Crush Pad"];
+const CRUSH_PADS = [
+  "All",
+  "White Crush Pad",
+  "Red Crush Pad",
+  "Reserve Crush Pad",
+];
 
 // Fetches all harvest loads from the backend (now receives authFetch as a param)
 const fetchHarvestLoads = async (authFetch) => {
-  const response = await authFetch('/api/harvestloads');
-  if (!response.ok) throw new Error('Failed to fetch harvest loads');
+  const response = await authFetch("/api/harvestloads");
+  if (!response.ok) throw new Error("Failed to fetch harvest loads");
   const data = await response.json();
 
   // Map backend fields to display fields (adjust as needed)
-  return data.map(item => ({
+  return data.map((item) => ({
     id: item.uid,
     uid: item.uid,
     Date_Received: item.Date_Received,
@@ -49,7 +54,7 @@ export default function HarvestLoadsScreen() {
     setLoading(true);
     fetchHarvestLoads(authFetch)
       .then(setData)
-      .catch(err => setError(err.message))
+      .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [authFetch]);
 
@@ -73,14 +78,14 @@ export default function HarvestLoadsScreen() {
       let res;
       if (formMode === "add") {
         // POST create
-        res = await authFetch('/api/harvestloads', {
+        res = await authFetch("/api/harvestloads", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formValues)
+          body: JSON.stringify(formValues),
         });
         if (!res.ok) {
           const data = await res.json();
-          throw new Error(data.error || 'Add failed');
+          throw new Error(data.error || "Add failed");
         }
       } else {
         // PATCH update (use .id or .uid)
@@ -88,11 +93,11 @@ export default function HarvestLoadsScreen() {
         res = await authFetch(`/api/harvestloads/${uid}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formValues)
+          body: JSON.stringify(formValues),
         });
         if (!res.ok) {
           const data = await res.json();
-          throw new Error(data.error || 'Edit failed');
+          throw new Error(data.error || "Edit failed");
         }
       }
       setShowForm(false);
@@ -106,16 +111,14 @@ export default function HarvestLoadsScreen() {
   }
 
   // Filter & sort
-  const filtered = data.filter(rec => {
+  const filtered = data.filter((rec) => {
     let match = true;
     if (crushPad !== "All" && rec.Crush_Pad !== crushPad) match = false;
     if (
       search &&
-      !(
-        `${rec.Date_Received} ${rec.WO} ${rec.Block} ${rec.Vintrace_ST}`
-          .toLowerCase()
-          .includes(search.toLowerCase())
-      )
+      !`${rec.Date_Received} ${rec.WO} ${rec.Block} ${rec.Vintrace_ST}`
+        .toLowerCase()
+        .includes(search.toLowerCase())
     )
       match = false;
     return match;
@@ -143,15 +146,17 @@ export default function HarvestLoadsScreen() {
             className="harvestloads-search"
             placeholder="Search"
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <select
             className="harvestloads-crushpad"
             value={crushPad}
-            onChange={e => setCrushPad(e.target.value)}
+            onChange={(e) => setCrushPad(e.target.value)}
           >
-            {CRUSH_PADS.map(cp => (
-              <option value={cp} key={cp}>{cp}</option>
+            {CRUSH_PADS.map((cp) => (
+              <option value={cp} key={cp}>
+                {cp}
+              </option>
             ))}
           </select>
         </div>
@@ -159,22 +164,25 @@ export default function HarvestLoadsScreen() {
           <table className="harvestloads-table">
             <thead>
               <tr>
-                {["Date_Received", "WO", "Block", "Vintrace_ST", "Tons"].map(col => (
-                  <th
-                    key={col}
-                    onClick={() => {
-                      setSortCol(col);
-                      setSortDesc(c => (sortCol === col ? !c : false));
-                    }}
-                  >
-                    {col.replace("_", " ")} {sortCol === col ? (sortDesc ? "▼" : "▲") : ""}
-                  </th>
-                ))}
+                {["Date_Received", "WO", "Block", "Vintrace_ST", "Tons"].map(
+                  (col) => (
+                    <th
+                      key={col}
+                      onClick={() => {
+                        setSortCol(col);
+                        setSortDesc((c) => (sortCol === col ? !c : false));
+                      }}
+                    >
+                      {col.replace("_", " ")}{" "}
+                      {sortCol === col ? (sortDesc ? "▼" : "▲") : ""}
+                    </th>
+                  ),
+                )}
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {sorted.map(rec => (
+              {sorted.map((rec) => (
                 <tr key={rec.id}>
                   <td>{rec.Date_Received}</td>
                   <td>{rec.WO}</td>

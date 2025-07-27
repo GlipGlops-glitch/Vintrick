@@ -3,6 +3,7 @@ import requests
 import uuid
 from datetime import datetime
 import time
+
 # Config
 API_URL = "http://localhost:3000/api/harvestloads"  # change if needed
 EXCEL_PATH = "Tools/harvest Loads.xlsx"
@@ -32,7 +33,7 @@ for idx, row in df.iterrows():
         "Crush_Pad": str(row["Crush Pad"]),
         "Status": str(row["Status"]),
         "last_modified": datetime.utcnow().isoformat(),
-        "synced": False
+        "synced": False,
     }
     # POST to API
     r = requests.post(API_URL, json=data)

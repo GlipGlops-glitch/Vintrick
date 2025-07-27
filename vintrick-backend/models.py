@@ -5,8 +5,10 @@ from typing import Optional
 import uuid
 from datetime import datetime
 
+
 def now_utc_iso():
     return datetime.utcnow().isoformat()
+
 
 @dataclass
 class HarvestLoad:
@@ -29,6 +31,7 @@ class HarvestLoad:
     Crush_Pad: str = ""
     Status: str = ""
     last_modified: str = field(default_factory=now_utc_iso)
+
 
 @dataclass
 class Blend:

@@ -1,29 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form, Spinner } from 'react-bootstrap';
-import PropTypes from 'prop-types';
-import { useSettings } from '../context/SettingsContext';
+import React, { useState, useEffect } from "react";
+import { Modal, Button, Form, Spinner } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { useSettings } from "../context/SettingsContext";
 import HarvestLoadFormBody from "./HarvestLoadFormBody";
 
 const defaultForm = {
-  uid: '',
-  Date_Received: '',
-  WO: '',
-  Block: '',
-  Vintrace_ST: '',
-  Tons: '',
+  uid: "",
+  Date_Received: "",
+  WO: "",
+  Block: "",
+  Vintrace_ST: "",
+  Tons: "",
   Crush_Pad: "White Crush Pad",
 };
 
-export default function AddEditHarvestLoadForm({ show, onClose, onSubmit, initialData, mode }) {
+export default function AddEditHarvestLoadForm({
+  show,
+  onClose,
+  onSubmit,
+  initialData,
+  mode,
+}) {
   const { settings } = useSettings();
   const visible = settings.harvestLoadForm.fields;
 
   const [form, setForm] = useState(defaultForm);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    if (initialData && mode === 'edit') {
+    if (initialData && mode === "edit") {
       setForm(initialData);
     } else {
       setForm(defaultForm);
@@ -32,21 +38,22 @@ export default function AddEditHarvestLoadForm({ show, onClose, onSubmit, initia
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
     try {
       // Validate required visible fields only
-      const required = Object.keys(visible).filter(f => visible[f]);
-      for (let f of required) if (!form[f]) throw new Error(`Missing field: ${f}`);
+      const required = Object.keys(visible).filter((f) => visible[f]);
+      for (let f of required)
+        if (!form[f]) throw new Error(`Missing field: ${f}`);
       await onSubmit(form);
       onClose();
     } catch (err) {
-      setError(err.message || 'Failed to submit');
+      setError(err.message || "Failed to submit");
     } finally {
       setLoading(false);
     }
@@ -56,7 +63,9 @@ export default function AddEditHarvestLoadForm({ show, onClose, onSubmit, initia
     <Modal show={show} onHide={onClose}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
-          <Modal.Title>{mode === 'add' ? 'Add Harvest Load' : 'Edit Harvest Load'}</Modal.Title>
+          <Modal.Title>
+            {mode === "add" ? "Add Harvest Load" : "Edit Harvest Load"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <HarvestLoadFormBody
@@ -73,7 +82,7 @@ export default function AddEditHarvestLoadForm({ show, onClose, onSubmit, initia
             Cancel
           </Button>
           <Button type="submit" variant="primary" disabled={loading}>
-            {loading ? <Spinner size="sm" /> : (mode === 'add' ? 'Add' : 'Save')}
+            {loading ? <Spinner size="sm" /> : mode === "add" ? "Add" : "Save"}
           </Button>
         </Modal.Footer>
       </Form>
@@ -86,5 +95,5 @@ AddEditHarvestLoadForm.propTypes = {
   onClose: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   initialData: PropTypes.object,
-  mode: PropTypes.oneOf(['add', 'edit']).isRequired
+  mode: PropTypes.oneOf(["add", "edit"]).isRequired,
 };

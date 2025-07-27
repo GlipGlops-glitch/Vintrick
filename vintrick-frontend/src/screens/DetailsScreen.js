@@ -1,21 +1,31 @@
 // DetailsScreen.js
 
-import './DetailsScreen.css';
+import "./DetailsScreen.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // Import useAuth
 
 const FIELDS_TO_SHOW = [
-  "Vintrace_ST", "Block", "Tons", "Press", "Tank", "WO",
-  "Date_Received", "Crush_Pad", "Status"
+  "Vintrace_ST",
+  "Block",
+  "Tons",
+  "Press",
+  "Tank",
+  "WO",
+  "Date_Received",
+  "Crush_Pad",
+  "Status",
 ];
 
 const PRESS_OPTIONS = [
-  "CC WP1 (25t)", "CC WP2 (25t)", "CC WP3 (25t)", "CC WP4 (25t)", "CC WP5 (10t)", "CC WP6 (50t)"
+  "CC WP1 (25t)",
+  "CC WP2 (25t)",
+  "CC WP3 (25t)",
+  "CC WP4 (25t)",
+  "CC WP5 (10t)",
+  "CC WP6 (50t)",
 ];
-const CRUSH_OPTIONS = [
-  "White Crush Pad", "Red Crush Pad", "Reserve Crush Pad"
-];
+const CRUSH_OPTIONS = ["White Crush Pad", "Red Crush Pad", "Reserve Crush Pad"];
 
 export default function DetailsScreen() {
   const navigate = useNavigate();
@@ -29,14 +39,17 @@ export default function DetailsScreen() {
     if (id) {
       setLoading(true);
       authFetch(`/api/harvestloads/${id}`)
-        .then(res => res.json())
-        .then(data => { setRecord(data); setLoading(false); })
+        .then((res) => res.json())
+        .then((data) => {
+          setRecord(data);
+          setLoading(false);
+        })
         .catch(() => setLoading(false));
     }
   }, [id, authFetch]);
 
   const handleChange = (field, value) => {
-    setRecord(rec => ({ ...rec, [field]: value }));
+    setRecord((rec) => ({ ...rec, [field]: value }));
   };
 
   const handleSave = async () => {
@@ -54,8 +67,8 @@ export default function DetailsScreen() {
       {
         method: id ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      }
+        body: JSON.stringify(body),
+      },
     );
     setSaving(false);
     if (resp.ok) {
@@ -74,35 +87,41 @@ export default function DetailsScreen() {
         {loading ? (
           <div className="details-loading">Loading...</div>
         ) : (
-          <form className="details-form" onSubmit={e => e.preventDefault()}>
-            {FIELDS_TO_SHOW.map(field => (
+          <form className="details-form" onSubmit={(e) => e.preventDefault()}>
+            {FIELDS_TO_SHOW.map((field) => (
               <div className="details-field-row" key={field}>
                 <label className="details-label">{field}</label>
                 {field === "Press" ? (
                   <select
                     className="details-input"
                     value={record.Press || ""}
-                    onChange={e => handleChange(field, e.target.value)}>
+                    onChange={(e) => handleChange(field, e.target.value)}
+                  >
                     <option value="">-- Select Press --</option>
-                    {PRESS_OPTIONS.map(opt => (
-                      <option key={opt} value={opt}>{opt}</option>
+                    {PRESS_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
                     ))}
                   </select>
                 ) : field === "Crush_Pad" ? (
                   <select
                     className="details-input"
                     value={record.Crush_Pad || ""}
-                    onChange={e => handleChange(field, e.target.value)}>
+                    onChange={(e) => handleChange(field, e.target.value)}
+                  >
                     <option value="">-- Select Crush Pad --</option>
-                    {CRUSH_OPTIONS.map(opt => (
-                      <option key={opt} value={opt}>{opt}</option>
+                    {CRUSH_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
                     ))}
                   </select>
                 ) : (
                   <input
                     className="details-input"
                     value={record[field] || ""}
-                    onChange={e => handleChange(field, e.target.value)}
+                    onChange={(e) => handleChange(field, e.target.value)}
                     type={field === "Tons" ? "number" : "text"}
                   />
                 )}
