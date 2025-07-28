@@ -342,3 +342,13 @@ app/main.py
 
 docker-compose build --no-cache
 docker-compose up
+
+
+Run stuff in the container 
+docker-compose exec api python test.py
+
+
+git status
+git add .
+git commit -m "CH"
+git push

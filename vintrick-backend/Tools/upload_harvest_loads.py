@@ -1,4 +1,5 @@
-# vintrick-backend/Tools/upload_harvest_loads.py
+# vintrick-backend/Tools/upload_harvest_loads.py     python Tools/upload_harvest_loads.py
+
 
 import pandas as pd
 import requests

@@ -1,7 +1,8 @@
-# vintrick-backend/schemas/harvestload.py
+# vintrick-backend/app/schemas/harvestload.py
 
 from pydantic import BaseModel, Field
 from typing import Optional
+from uuid import UUID
 from datetime import datetime
 
 class HarvestLoadBase(BaseModel):
@@ -23,11 +24,13 @@ class HarvestLoadBase(BaseModel):
     Crush_Pad: str
     Status: str
     last_modified: datetime
-    synced: bool
+    synced: bool = False
 
 class HarvestLoadCreate(HarvestLoadBase):
-    uid: str
+    pass
 
-class HarvestLoadOut(HarvestLoadCreate):
+class HarvestLoadOut(HarvestLoadBase):
+    uid: UUID
+
     class Config:
         from_attributes = True
