@@ -14,11 +14,11 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/", response_model=list[schemas.HarvestLoadOut])
+@router.get("/harvestloads", response_model=list[schemas.HarvestLoadOut])
 def list_harvestloads(db: Session = Depends(get_db)):
     return crud.get_harvestloads(db)
 
-@router.post("/", response_model=schemas.HarvestLoadOut)
+@router.post("/harvestloads", response_model=schemas.HarvestLoadOut)
 def create_harvestload(load: schemas.HarvestLoadCreate, db: Session = Depends(get_db)):
     return crud.create_harvestload(db, load)
 

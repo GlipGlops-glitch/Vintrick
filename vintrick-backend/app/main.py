@@ -8,4 +8,4 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Vintrick API")
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
-app.include_router(harvestloads.router, prefix="/harvestloads", tags=["harvestloads"])
+app.include_router(harvestloads.router, prefix="/api", tags=["harvestloads"])
