@@ -29,7 +29,7 @@ def read_harvestload(load_id: str, db: Session = Depends(get_db)):
 
 @router.get("/harvestloads/", response_model=list[HarvestLoad])
 def list_harvestloads(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return harvest_load_service.list_harvestloads(db, skip=skip, limit=limit)
+    return harvest_load_service.get_all_harvestloads(db)
 
 
 @router.put("/harvestloads/{load_id}", response_model=HarvestLoad)

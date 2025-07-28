@@ -4,9 +4,8 @@ import React, { useState, useEffect } from "react";
 import HeaderBar from "../components/HeaderBar";
 import AddEditHarvestLoadForm from "../components/AddEditHarvestLoadForm";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // Import useAuth
+import { useAuth } from "../context/AuthContext";
 
-// All available crush pads (adjust as needed)
 const CRUSH_PADS = [
   "All",
   "White Crush Pad",
@@ -14,13 +13,10 @@ const CRUSH_PADS = [
   "Reserve Crush Pad",
 ];
 
-// Fetches all harvest loads from the backend (now receives authFetch as a param)
 const fetchHarvestLoads = async (authFetch) => {
-  const response = await authFetch("/api/harvestloads");
+  const response = await authFetch("/api/harvestloads/");
   if (!response.ok) throw new Error("Failed to fetch harvest loads");
   const data = await response.json();
-
-  // Map backend fields to display fields (adjust as needed)
   return data.map((item) => ({
     id: item.uid,
     uid: item.uid,
@@ -42,13 +38,12 @@ export default function HarvestLoadsScreen() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Add/Edit modal state
   const [showForm, setShowForm] = useState(false);
   const [formMode, setFormMode] = useState("add");
   const [selectedRecord, setSelectedRecord] = useState(null);
 
   const navigate = useNavigate();
-  const { authFetch } = useAuth(); // Use authFetch from context
+  const { authFetch } = useAuth();
 
   useEffect(() => {
     setLoading(true);
@@ -58,26 +53,22 @@ export default function HarvestLoadsScreen() {
       .finally(() => setLoading(false));
   }, [authFetch]);
 
-  // Open Add modal
   function handleAddNew() {
     setFormMode("add");
     setSelectedRecord(null);
     setShowForm(true);
   }
 
-  // Open Edit modal
   function handleOpenEdit(record) {
     setFormMode("edit");
     setSelectedRecord(record);
     setShowForm(true);
   }
 
-  // Submit handler for form
   async function handleFormSubmit(formValues) {
     try {
       let res;
       if (formMode === "add") {
-        // POST create
         res = await authFetch("/api/harvestloads", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -88,7 +79,6 @@ export default function HarvestLoadsScreen() {
           throw new Error(data.error || "Add failed");
         }
       } else {
-        // PATCH update (use .id or .uid)
         const uid = formValues.id || formValues.uid;
         res = await authFetch(`/api/harvestloads/${uid}`, {
           method: "PATCH",
@@ -110,7 +100,6 @@ export default function HarvestLoadsScreen() {
     }
   }
 
-  // Filter & sort
   const filtered = data.filter((rec) => {
     let match = true;
     if (crushPad !== "All" && rec.Crush_Pad !== crushPad) match = false;
@@ -173,10 +162,9 @@ export default function HarvestLoadsScreen() {
                         setSortDesc((c) => (sortCol === col ? !c : false));
                       }}
                     >
-                      {col.replace("_", " ")}{" "}
-                      {sortCol === col ? (sortDesc ? "▼" : "▲") : ""}
+                      {col.replace("_", " ")} {sortCol === col ? (sortDesc ? "▼" : "▲") : ""}
                     </th>
-                  ),
+                  )
                 )}
                 <th></th>
               </tr>
